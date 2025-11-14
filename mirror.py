@@ -1,6 +1,8 @@
 import numpy as np
 import cv2 as cv
 
+face_cascade = cv.CascadeClassifier('haarcascade_frontalface_default.xml')
+
 cap = cv.VideoCapture(0)
 if not cap.isOpened():
     print("Cannot open camera")
@@ -41,6 +43,19 @@ while True:
 
     # Our operations on the frame come here
     gray = cv.cvtColor(frame_half, cv.COLOR_BGR2GRAY)
+
+
+
+    # do face detect 
+    faces = face_cascade.detectMultiScale(gray)
+    print('detected face(s) at:', faces)
+    # Draw rectangle around the faces
+    for (x, y, w, h) in faces:
+        cv.rectangle(frame_half, (x, y), (x+w, y+h), (0, 255, 255), 5)
+
+
+
+
     # Display the resulting frame
     #cv.imshow('frame', gray)
     cv.imshow('frame', frame_half)
