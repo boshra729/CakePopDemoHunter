@@ -47,14 +47,15 @@ while True:
 
 
     # do face detect 
-    faces = face_cascade.detectMultiScale(gray)
+    faces = face_cascade.detectMultiScale(gray, scaleFactor=1.5, minNeighbors=2) 
     print('detected face(s) at:', faces)
     # Draw rectangle around the faces
     for (x, y, w, h) in faces:
         cv.rectangle(frame_half, (x, y), (x+w, y+h), (0, 255, 255), 5)
 
 
-
+    # draw demons
+    cv.rectangle(frame_half,(0,0),(100,100),(255,255,255), 2) 
 
     # Display the resulting frame
     #cv.imshow('frame', gray)
