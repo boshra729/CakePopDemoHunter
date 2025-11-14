@@ -13,6 +13,9 @@ while True:
     if not ret:
         print("Can't receive frame (stream end?). Exiting ...")
         break
+
+    # change frame it is fliped 
+    frame = cv.flip(frame, 1)
     
     # Get the original dimensions
     height, width = frame.shape[:2]
